@@ -2,13 +2,19 @@
   Created by IntelliJ IDEA.
   User: Rory
   Date: 12/05/2021
-  Time: 15:28
+  Time: 18:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-    <div class="links" style="text-align:center; border:1px solid black; padding:15px; margin:15px">
-        <a href="index.html">Back to Main Menu</a>
-        <div class=clearBoth"></div>
-    </div>
+    <head>
+        <jsp:include page="header.jsp"/>
+        <title>New List</title>
+    </head>
+
+    <body>
+        MiNuList
+    </body>
+
+    <jsp:include page="footer.jsp"/>
 </html>

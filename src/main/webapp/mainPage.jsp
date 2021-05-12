@@ -14,9 +14,18 @@
         </title>
     </head>
 
-    <body>
-        BODY£
-    </body>
+    <div style="padding: 15px">
+        <body>
+
+            <form method="post" action="/newList.html">
+                <input type="Submit" value="Create a new list"/>
+            </form>
+
+            <form method="post" action="/search.html">
+                <input type="Submit" value="Display an existing list"/>
+            </form>
+        </body>
+    </div>
 
     <jsp:include page="footer.jsp"/>
 </html>
