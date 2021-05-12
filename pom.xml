@@ -11,7 +11,7 @@
 
     <packaging>war</packaging>
 
-    <name>MyWebApp</name>
+    <name>Rory's List-Making Web App</name>
 
     <url>http://localhost:8181</url>
 
