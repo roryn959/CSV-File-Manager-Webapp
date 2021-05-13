@@ -7,13 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 
-@WebServlet("/newList.html")
+@WebServlet("/displaySearchResults.html")
 public class displayListServlet extends HttpServlet {
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/newListPage.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/footer.jsp");
         dispatch.forward(request, response);
     }
 }

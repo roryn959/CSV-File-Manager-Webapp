@@ -19,13 +19,22 @@
         <body>
 
             <form action="/displaySearchResults.html">
-                <label for="lists">Detected x lists. Please pick one:</label>
+
+                <%String[] dataFileNames = (String[]) request.getAttribute("dataFileNames");%>
+                <label for="lists">Detected <%=dataFileNames.length%> lists. Please pick one:</label>
 
                 <select name="lists" id="lists">
+                    <!--
                     <option value="List1">List1</option>
                     <option value="List2">List2</option>
                     <option value="List3">List3</option>
+                    -->
+
+                    <%for (String name : dataFileNames){%>
+                        <option value=<%=name%>><%=name%></option>
+                    <%}%>
                 </select>
+
                 <input type="submit" value="Select">
             </form>
 
