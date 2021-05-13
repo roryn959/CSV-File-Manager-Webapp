@@ -21,9 +21,9 @@
             <form action="/displaySearchResults.html">
 
                 <%String[] dataFileNames = (String[]) request.getAttribute("dataFileNames");%>
-                <label for="lists">Detected <%=dataFileNames.length%> lists. Please pick one:</label>
+                <label for="list">Detected <%=dataFileNames.length%> lists. Please pick one:</label>
 
-                <select name="lists" id="lists">
+                <select name="list" id="list">
                     <!--
                     <option value="List1">List1</option>
                     <option value="List2">List2</option>
