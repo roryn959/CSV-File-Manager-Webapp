@@ -1,7 +1,7 @@
 package rory.model;
 
 public class LinkedList {
-    private Item root;
+    private Block root;
     private int size;
 
     public LinkedList(){
@@ -13,94 +13,63 @@ public class LinkedList {
         return size;
     }
 
-    private Item getLast(){
+    private Block getLast(){
         if (this.root == null){
             return null;
         }
 
-        Item currentItem = this.root;
-        while (currentItem.getNext() != null){
-            currentItem = currentItem.getNext();
+        Block currentBlock = this.root;
+        while (currentBlock.getNext() != null){
+            currentBlock = currentBlock.getNext();
         }
-        return currentItem;
+        return currentBlock;
     }
 
-    public void addItem(Item item){
+    public void addBlock(Block block){
         if (this.root == null){
-            this.root = item;
+            this.root = block;
         } else{
-            Item lastItem = this.getLast();
-            lastItem.setNext(item);
-            item.setLast(lastItem);
+            Block lastBlock = this.getLast();
+            lastBlock.setNext(block);
+            block.setLast(lastBlock);
         }
         this.size++;
     }
 
-    public Item getByIndex(int index){
-        Item currentItem = this.root;
+    public Block getByIndex(int index){
+        Block currentBlock = this.root;
 
-        while (index>0 && currentItem != null){
-            currentItem = currentItem.getNext();
+        while (index>0 && currentBlock != null){
+            currentBlock = currentBlock.getNext();
             index--;
         }
 
-        return currentItem; //Works by decrementing index until it's 0, meaning indices above 0 should return null
+        return currentBlock; //Works by decrementing index until it's 0, meaning indices above 0 should return null
     }
 
     public void deleteByIndex(int index){
         assert index>=0 && index<this.size;
 
-        Item itemToDelete = this.getByIndex(index);
+        Block blockToDelete = this.getByIndex(index);
 
-        Item lastItem = itemToDelete.getLast();
-        Item nextItem = itemToDelete.getNext();
+        Block lastBlock = blockToDelete.getLast();
+        Block nextBlock = blockToDelete.getNext();
 
         //By having no pointers to the item at index, it's effectively deleted
         //Must check if nextItem is not null before calling to avoid error.
         //We also check if last is null, but this means we are deleting the root, so handle appropriately
 
-        if (lastItem == null){
+        if (lastBlock == null){
             this.root = this.root.getNext();
             this.root.setLast(null);
         } else {
-            lastItem.setNext(nextItem);
+            lastBlock.setNext(nextBlock);
         }
 
-        if (nextItem != null) {
-            nextItem.setLast(lastItem);
+        if (nextBlock != null) {
+            nextBlock.setLast(lastBlock);
         }
 
         this.size--;
-    }
-
-    private void displayList(){ //*** Used for testing, delete ***
-        Item currentItem = this.root;
-
-        while (currentItem != null){
-            System.out.println(currentItem.getType() + " | " + currentItem.getValue());
-            currentItem = currentItem.getNext();
-        }
-
-        System.out.println("Size: " + this.size);
-    }
-
-    public static void main(String[] args) {
-        LinkedList a = new LinkedList();
-
-        Item item1 = new Item("Type One", "Value 1");
-        Item item2 = new Item("Type Two", "Value 2");
-        Item item3 = new Item("Type Three", "Value 3");
-        Item item4 = new Item("Type Four", "Value 4");
-
-        a.addItem(item1);
-        a.addItem(item2);
-        a.addItem(item3);
-        a.addItem(item4);
-
-        a.displayList();
-
-        a.deleteByIndex(1);
-
-        a.displayList();
     }
 }

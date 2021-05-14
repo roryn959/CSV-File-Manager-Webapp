@@ -1,24 +1,76 @@
 package rory.model;
 
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Model {
     private LinkedList list;
     private int counter; //Used to iterate through; 'getNext', 'hasNext'
 
-    public String[] getDataFileNames() {
+    private String getDataFilePath(){
         String x = File.separator;
         String currentPath = System.getProperty("user.dir");
         String dataPath = currentPath + x + "src" + x + "main" + x + "java" + x + "rory" + x + "data";
 
-        File currentDirectory = new File(dataPath);
-        return currentDirectory.list();
+        return dataPath;
     }
 
-    public Item getNext() {
-        Item item = this.list.getByIndex(this.counter);
+    public String[] getDataFileNames() {
+        String dataPath = this.getDataFilePath();
+
+        File dataDirectory = new File(dataPath);
+        return dataDirectory.list();
+    }
+
+    public void loadFile(String filePath) throws IOException {
+        this.list = new LinkedList();
+        //Takes file name as parameter. Prepend the path to the data files to the name.
+        String dataFilePath = this.getDataFilePath();
+        filePath = dataFilePath + File.separator + filePath;
+
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+        String line;
+        Block block;
+        Item item;
+
+        while ((line = reader.readLine()) != null) {
+            block = new Block();
+            String[] pairs = line.split("#");
+
+            for (String pair : pairs){
+                String[] type_value = pair.split("~");
+                block.addItem(new Item(type_value[0], type_value[1]));
+            }
+            this.list.addBlock(block);
+        }
+
+        this.counter = 0;
+    }
+
+    public Block getNext(){
+        Block block = this.list.getByIndex(this.counter);
         this.counter++;
-        return item;
+        return block;
+    }
+
+    public ArrayList<Block> getNumberOfNextBlocks(int n){
+        ArrayList<Block> blocks = new ArrayList<>();
+
+        while (this.hasNext() && blocks.size()<n){
+            blocks.add(this.getNext());
+        }
+        return blocks;
+    }
+
+    public ArrayList<Block> getNumberOfLastBlocks(int n){
+        ArrayList<Block> blocks = new ArrayList<>();
+
+        while (this.counter>=0 && blocks.size()<n){
+            blocks.add(this.getNext()); //******CHANGE TO GETLAST
+        }
+        return blocks;
     }
 
     public boolean hasNext() {

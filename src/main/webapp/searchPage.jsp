@@ -24,12 +24,6 @@
                 <label for="list">Detected <%=dataFileNames.length%> lists. Please pick one:</label>
 
                 <select name="list" id="list">
-                    <!--
-                    <option value="List1">List1</option>
-                    <option value="List2">List2</option>
-                    <option value="List3">List3</option>
-                    -->
-
                     <%for (String name : dataFileNames){%>
                         <option value=<%=name%>><%=name%></option>
                     <%}%>
