@@ -38,4 +38,16 @@ public class Block {
     public Block getNext() {
         return this.next;
     }
+
+    public void filterBy(String filter){
+        ArrayList<Item> newItems = new ArrayList<>();
+
+        for (Item item : this.items){
+            if (item.getType().equals(filter)){
+                newItems.add(item);
+            }
+        }
+
+        this.items = newItems;
+    }
 }

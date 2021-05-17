@@ -34,14 +34,48 @@
             <%=request.getAttribute("chosenFile")%>
         </h1>
 
+        <form action="/displaySearchResults.html" method="post">
+            <label for="filter">Filter:</label>
+            <select name="filter" id="filter">
+                <option value="none">None</option>
+                <option value="text">Text</option>
+                <option value="link">Links</option>
+                <option value="image">Images</option>
+                <option value="list">Lists</option>
+            </select>
+
+            <input type="hidden" name="list" value="<%=request.getAttribute("chosenFile")%>">
+            <button type="submit">Refresh</button>
+        </form>
+
         <table>
             <%ArrayList<Block> blocks = (ArrayList<Block>) request.getAttribute("blocks");%>
             <%for (Block block : blocks){%>
                 <tr>
                     <%for (Item item : block.getItems()){%>
-                        <th>
-                            <%=item.getValue()%>
-                        </th>
+
+                        <%if (item.getType().equals("text")){%>
+                            <th>
+                                <%=item.getValue()%>
+                            </th>
+                        <%} else if (item.getType().equals("link")) {%>
+                            <th>
+                                <a href=<%=item.getValue()%>>
+                                    <%=item.getValue()%>
+                                </a>
+                            </th>
+                        <%} else if (item.getType().equals("image")) {%>
+                            <th>
+                                <img src=<%=item.getValue()%>>
+                            </th>
+                        <%} else if (item.getType().equals("list")) {%>
+                            <th>
+                                <form action="/displaySearchResults.html" method="post">
+                                    <input type="hidden" name="list" value="<%=item.getValue()%>">
+                                    <input type="submit" value="<%=item.getValue()%>"/>
+                                </form>
+                            </th>
+                        <%}%>
                     <%}%>
                 </tr>
             <%}%>

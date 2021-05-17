@@ -55,25 +55,28 @@ public class Model {
         return block;
     }
 
-    public ArrayList<Block> getNumberOfNextBlocks(int n){
-        ArrayList<Block> blocks = new ArrayList<>();
-
-        while (this.hasNext() && blocks.size()<n){
-            blocks.add(this.getNext());
-        }
-        return blocks;
-    }
-
-    public ArrayList<Block> getNumberOfLastBlocks(int n){
-        ArrayList<Block> blocks = new ArrayList<>();
-
-        while (this.counter>=0 && blocks.size()<n){
-            blocks.add(this.getNext()); //******CHANGE TO GETLAST
-        }
-        return blocks;
-    }
-
     public boolean hasNext() {
         return (this.counter < this.list.getSize());
+    }
+
+    public ArrayList<Block> getBlocks(){
+        ArrayList<Block> blocks = new ArrayList<>();
+        this.resetCounter();
+
+        while (this.hasNext()){
+            blocks.add(this.getNext());
+        }
+
+        return blocks;
+    }
+
+    public void resetCounter(){
+        this.counter = 0;
+    }
+
+    public void filterBy(String filter){
+        if (filter != null && !filter.equals("none")) {
+            this.list.filterBy(filter);
+        }
     }
 }

@@ -23,7 +23,26 @@ public class displayListServlet extends HttpServlet {
 
         model.loadFile(chosenFile);
 
-        ArrayList<Block> blocks = model.getNumberOfNextBlocks(5);
+        ArrayList<Block> blocks = model.getBlocks();
+        request.setAttribute("blocks", blocks);
+
+        ServletContext context = getServletContext();
+        RequestDispatcher dispatch = context.getRequestDispatcher("/displayList.jsp");
+        dispatch.forward(request, response);
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Model model = ModelFactory.getModel();
+
+        String chosenFile = request.getParameter("list");
+        String filter = request.getParameter("filter");
+
+        request.setAttribute("chosenFile", chosenFile);
+
+        model.loadFile(chosenFile);
+        model.filterBy(filter);
+
+        ArrayList<Block> blocks = model.getBlocks();
         request.setAttribute("blocks", blocks);
 
         ServletContext context = getServletContext();

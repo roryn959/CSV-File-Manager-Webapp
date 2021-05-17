@@ -72,4 +72,13 @@ public class LinkedList {
 
         this.size--;
     }
+
+    public void filterBy(String filter){
+        Block currentBlock = this.root;
+
+        while (currentBlock != null){
+            currentBlock.filterBy(filter);
+            currentBlock = currentBlock.getNext();
+        }
+    }
 }
