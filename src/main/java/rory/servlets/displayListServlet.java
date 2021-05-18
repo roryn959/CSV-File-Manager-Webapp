@@ -12,7 +12,7 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.util.ArrayList;
 
-@WebServlet("/displaySearchResults.html")
+@WebServlet("/displayList.html")
 public class displayListServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class displayListServlet extends HttpServlet {
         request.setAttribute("blocks", blocks);
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/displayList.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/displayListPage.jsp");
         dispatch.forward(request, response);
     }
 
@@ -46,7 +46,7 @@ public class displayListServlet extends HttpServlet {
         request.setAttribute("blocks", blocks);
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/displayList.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/displayListPage.jsp");
         dispatch.forward(request, response);
     }
 }

@@ -10,17 +10,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 
-@WebServlet("/search.html")
-public class searchServlet extends HttpServlet {
+@WebServlet("/displayListPicker.html")
+public class displayListPickerServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Model model = ModelFactory.getModel();
-        String[] dataFileNames = model.getDataFileNames();
-        request.setAttribute("dataFileNames", dataFileNames);
+        request.setAttribute("nextPage", "displayList.html");
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/searchPage.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/pickList.html");
         dispatch.forward(request, response);
     }
 }

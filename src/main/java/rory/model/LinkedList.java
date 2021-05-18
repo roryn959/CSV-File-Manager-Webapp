@@ -3,14 +3,20 @@ package rory.model;
 public class LinkedList {
     private Block root;
     private int size;
+    private String name;
 
-    public LinkedList(){
+    public LinkedList(String name){
         this.root = null;
         this.size = 0;
+        this.name = name;
     }
 
     public int getSize() {
         return size;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     private Block getLast(){
@@ -80,5 +86,17 @@ public class LinkedList {
             currentBlock.filterBy(filter);
             currentBlock = currentBlock.getNext();
         }
+    }
+
+    public boolean deleteItem(String hashCode){
+        Block currentBlock = this.root;
+
+        while (currentBlock != null){
+            if (currentBlock.deleteItem(hashCode)){
+                return true;
+            }
+            currentBlock = currentBlock.getNext();
+        }
+        return false;
     }
 }

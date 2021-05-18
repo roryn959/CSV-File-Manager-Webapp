@@ -18,7 +18,9 @@
     <div style="padding: 15px">
         <body>
 
-            <form action="/displaySearchResults.html">
+            <%String nextPage = (String) request.getAttribute("nextPage");%>
+
+            <form action="<%=nextPage%>">
 
                 <%String[] dataFileNames = (String[]) request.getAttribute("dataFileNames");%>
                 <label for="list">Detected <%=dataFileNames.length%> lists. Please pick one:</label>

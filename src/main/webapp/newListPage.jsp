@@ -13,7 +13,13 @@
     </head>
 
     <body>
-        MiNuList
+        <div style="padding: 15px">
+            <form action="index.html">
+                <label for="listName">Name of new list:</label><br>
+                <input type="text" id="listName" name="listName" required>
+                <input type="submit" value="Create">
+            </form>
+        </div>
     </body>
 
     <jsp:include page="footer.jsp"/>

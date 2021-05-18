@@ -18,11 +18,15 @@
         <body>
 
             <form method="post" action="/newList.html">
-                <input type="Submit" value="Create a new list"/>
+                <input type="submit" value="Create a new list"/>
             </form>
 
-            <form method="post" action="/search.html">
-                <input type="Submit" value="Display an existing list"/>
+            <form method="post" action="/editListPicker.html">
+                <input type="submit" value="Edit a list"/>
+            </form>
+
+            <form method="post" action="/displayListPicker.html">
+                <input type="submit" value="Display an existing list"/>
             </form>
         </body>
     </div>

@@ -34,7 +34,7 @@
             <%=request.getAttribute("chosenFile")%>
         </h1>
 
-        <form action="/displaySearchResults.html" method="post">
+        <form action="/displayList.html" method="post">
             <label for="filter">Filter:</label>
             <select name="filter" id="filter">
                 <option value="none">None</option>
@@ -70,7 +70,7 @@
                             </th>
                         <%} else if (item.getType().equals("list")) {%>
                             <th>
-                                <form action="/displaySearchResults.html" method="post">
+                                <form action="/displayList.html" method="post">
                                     <input type="hidden" name="list" value="<%=item.getValue()%>">
                                     <input type="submit" value="<%=item.getValue()%>"/>
                                 </form>

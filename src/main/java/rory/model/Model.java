@@ -2,7 +2,6 @@ package rory.model;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Model {
     private LinkedList list;
@@ -24,7 +23,7 @@ public class Model {
     }
 
     public void loadFile(String filePath) throws IOException {
-        this.list = new LinkedList();
+        this.list = new LinkedList(filePath);
         //Takes file name as parameter. Prepend the path to the data files to the name.
         String dataFilePath = this.getDataFilePath();
         filePath = dataFilePath + File.separator + filePath;
@@ -40,8 +39,10 @@ public class Model {
             String[] pairs = line.split("#");
 
             for (String pair : pairs){
-                String[] type_value = pair.split("~");
-                block.addItem(new Item(type_value[0], type_value[1]));
+                if (!pair.isEmpty()) {
+                    String[] type_value = pair.split("~");
+                    block.addItem(new Item(type_value[0], type_value[1]));
+                }
             }
             this.list.addBlock(block);
         }
@@ -78,5 +79,37 @@ public class Model {
         if (filter != null && !filter.equals("none")) {
             this.list.filterBy(filter);
         }
+    }
+
+    public void deleteItem(String hashCode){
+        if (this.list.deleteItem(hashCode)){
+            try {
+                this.writeFile();
+            } catch (IOException e) {
+                System.out.println("An error occurred in the writing of the file.");
+            }
+        }
+        else {
+            System.out.println("Failed to find item to delete");
+        }
+    }
+
+    public void writeFile() throws IOException {
+        String path = this.getDataFilePath();
+        path = path + File.separator + this.list.getName();
+
+        System.out.println("Writing to " + path);
+
+        FileWriter fileWriter = new FileWriter(path, false);
+
+        for (Block block : this.getBlocks()) {
+            for (Item item : block.getItems()){
+                System.out.println("Writing");
+                fileWriter.write(item.getType() + '~' + item.getValue() + '#');
+            }
+
+            fileWriter.write('\n');
+        }
+        fileWriter.close();
     }
 }

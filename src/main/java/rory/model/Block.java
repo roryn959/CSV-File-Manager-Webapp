@@ -50,4 +50,17 @@ public class Block {
 
         this.items = newItems;
     }
+
+    public boolean deleteItem(String hashCode){
+        for (int i=0; i<this.items.size(); i++){
+            Item currentItem = this.items.get(i);
+            String currentHashCode = currentItem.toString();
+
+            if (currentHashCode.equals(hashCode)){
+                this.items.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 }
