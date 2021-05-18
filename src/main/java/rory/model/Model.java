@@ -88,9 +88,20 @@ public class Model {
             } catch (IOException e) {
                 System.out.println("An error occurred in the writing of the file.");
             }
-        }
-        else {
+        } else {
             System.out.println("Failed to find item to delete");
+        }
+    }
+
+    public void editItem(String hashCode, String newType, String newValue){
+        if (this.list.editItem(hashCode, newType, newValue)){
+            try {
+                this.writeFile();
+            } catch (IOException e){
+                System.out.println("An error occurred in the writing of the file.");
+            }
+        } else {
+            System.out.println("Failed to find item to edit.");
         }
     }
 
@@ -98,13 +109,10 @@ public class Model {
         String path = this.getDataFilePath();
         path = path + File.separator + this.list.getName();
 
-        System.out.println("Writing to " + path);
-
         FileWriter fileWriter = new FileWriter(path, false);
 
         for (Block block : this.getBlocks()) {
             for (Item item : block.getItems()){
-                System.out.println("Writing");
                 fileWriter.write(item.getType() + '~' + item.getValue() + '#');
             }
 

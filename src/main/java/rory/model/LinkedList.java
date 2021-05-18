@@ -99,4 +99,16 @@ public class LinkedList {
         }
         return false;
     }
+
+    public boolean editItem(String hashCode, String newType, String newValue){
+        Block currentBlock = this.root;
+
+        while (currentBlock != null){
+            if (currentBlock.editItem(hashCode, newType, newValue)){
+                return true;
+            }
+            currentBlock = currentBlock.getNext();
+        }
+        return false;
+    }
 }

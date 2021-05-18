@@ -1,7 +1,5 @@
 package rory.servlets;
 
-import rory.model.Block;
-import rory.model.Item;
 import rory.model.Model;
 import rory.model.ModelFactory;
 
@@ -12,18 +10,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 
-@WebServlet("/editItem.html")
-public class editItemServlet extends HttpServlet {
+@WebServlet("/processEdit.html")
+public class processEditServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Model model = ModelFactory.getModel();
 
-        String chosenFile = request.getParameter("list");
-        request.setAttribute("list", chosenFile);
+        String itemHash = request.getParameter("item");
+        String newType = request.getParameter("newType");
+        String newValue = request.getParameter("newValue");
+
+        model.editItem(itemHash, newType, newValue);
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/getEditPage.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/editList.html");
         dispatch.forward(request, response);
     }
 }

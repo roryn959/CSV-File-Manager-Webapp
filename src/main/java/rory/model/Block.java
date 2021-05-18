@@ -63,4 +63,18 @@ public class Block {
         }
         return false;
     }
+
+    public boolean editItem(String hashCode, String newType, String newValue){
+        for (int i=0; i<this.items.size(); i++){
+            Item currentItem = this.items.get(i);
+            String currentHashCode = currentItem.toString();
+
+            if (currentHashCode.equals(hashCode)){
+                Item newItem = new Item(newType, newValue);
+                this.items.set(i, newItem);
+                return true;
+            }
+        }
+        return false;
+    }
 }
