@@ -140,4 +140,14 @@ public class Model {
         FileWriter fileWriter = new FileWriter(path, false);
         fileWriter.close();
     }
+
+    public void addRow() throws IOException {
+        String path = this.getDataFilePath();
+        path = path + File.separator + this.list.getName();
+
+        FileWriter fileWriter = new FileWriter(path, true);
+
+        fileWriter.write('\n');
+        fileWriter.close();
+    }
 }

@@ -94,6 +94,15 @@
 
         </tr>
         <%}%>
+
+        <tr>
+            <th>
+                <form action="/processNewRow.html" method="post">
+                    <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
+                    <input type="submit" value="+"/>
+                </form>
+            </th>
+        </tr>
     </table>
 
     </body>
