@@ -10,22 +10,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 
-@WebServlet("/processEdit.html")
-public class processEditServlet extends HttpServlet {
+@WebServlet("/processAddItem.html")
+public class processAddItemServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Model model = ModelFactory.getModel();
 
-        String itemHash = request.getParameter("item");
+        String blockHash = request.getParameter("block");
         String newType = request.getParameter("newType");
         String newValue = request.getParameter("newValue");
 
-        //Save which list we were editing so we can return to editing that same list
-        String chosenFile = request.getParameter("list");
-        System.out.println("*** list: " + chosenFile);
-
-        model.editItem(itemHash, newType, newValue);
+        model.addToBlock(blockHash, newType, newValue);
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/editList.html");

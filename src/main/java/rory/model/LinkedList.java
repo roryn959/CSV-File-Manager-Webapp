@@ -111,4 +111,19 @@ public class LinkedList {
         }
         return false;
     }
+
+    public boolean addToBlock(String hashCode, String newType, String newValue){
+        Block currentBlock = this.root;
+
+        while (currentBlock != null){
+            String currentHashCode = currentBlock.toString();
+            if (currentHashCode.equals(hashCode)){
+                Item newItem = new Item(newType, newValue);
+                currentBlock.addItem(newItem);
+                return true;
+            }
+            currentBlock = currentBlock.getNext();
+        }
+        return false;
+    }
 }

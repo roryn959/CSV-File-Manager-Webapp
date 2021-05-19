@@ -14,9 +14,9 @@
 
     <body>
         <div style="padding: 15px">
-            <form action="index.html">
-                <label for="listName">Name of new list:</label><br>
-                <input type="text" id="listName" name="listName" required>
+            <form action="/processNewList.html">
+                <label for="newListName">Name of new list:</label><br>
+                <input type="text" id="newListName" name="list" required>
                 <input type="submit" value="Create">
             </form>
         </div>

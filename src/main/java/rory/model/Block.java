@@ -45,6 +45,8 @@ public class Block {
         for (Item item : this.items){
             if (item.getType().equals(filter)){
                 newItems.add(item);
+            } else{
+                System.out.println("Not including " + item.getValue());
             }
         }
 

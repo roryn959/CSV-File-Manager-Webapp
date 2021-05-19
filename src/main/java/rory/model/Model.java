@@ -105,6 +105,18 @@ public class Model {
         }
     }
 
+    public void addToBlock(String hashCode, String newType, String newValue){
+        if (this.list.addToBlock(hashCode, newType, newValue)) {
+            try {
+                this.writeFile();
+            } catch (IOException e) {
+                System.out.println("An error occurred in the writing of the file.");
+            }
+        } else {
+            System.out.println("Failed to add to block.");
+        }
+    }
+
     public void writeFile() throws IOException {
         String path = this.getDataFilePath();
         path = path + File.separator + this.list.getName();

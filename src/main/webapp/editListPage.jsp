@@ -32,7 +32,7 @@
     <body>
 
     <h1>
-        <%=request.getAttribute("chosenFile")%>
+        <%=request.getParameter("list")%>
     </h1>
 
     <table>
@@ -43,16 +43,16 @@
             <%for (Item item : block.getItems()){%>
 
             <th>
-            <form action="/deleteItem.html" method="get">
-                <input type="hidden" name="list" value="<%=request.getAttribute("chosenFile")%>">
+            <form action="/deleteItem.html" method="post">
+                <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
                 <input type="hidden" name="item" value="<%=item.toString()%>">
                 <button type="submit">Delete</button>
             </form>
             </th>
 
             <th>
-            <form action="/editItem.html" method="get">
-                <input type="hidden" name="list" value="<%=request.getAttribute("chosenFile")%>">
+            <form action="/editItem.html" method="post">
+                <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
                 <input type="hidden" name="itemValue" value="<%=item.getValue()%>">
                 <input type="hidden" name="itemType" value="<%=item.getType()%>">
                 <input type="hidden" name="item" value="<%=item.toString()%>">
@@ -83,6 +83,15 @@
             </th>
             <%}%>
             <%}%>
+
+            <th>
+                <form action="/addItem.html" method="post">
+                    <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
+                    <input type="hidden" name="block" value="<%=block.toString()%>">
+                    <input type="submit" value="+"/>
+                </form>
+            </th>
+
         </tr>
         <%}%>
     </table>

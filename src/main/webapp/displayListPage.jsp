@@ -31,7 +31,7 @@
     <body>
 
         <h1>
-            <%=request.getAttribute("chosenFile")%>
+            <%=request.getParameter("list")%>
         </h1>
 
         <form action="/displayList.html" method="post">
@@ -44,7 +44,7 @@
                 <option value="list">Lists</option>
             </select>
 
-            <input type="hidden" name="list" value="<%=request.getAttribute("chosenFile")%>">
+            <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
             <button type="submit">Refresh</button>
         </form>
 
