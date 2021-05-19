@@ -132,4 +132,12 @@ public class Model {
         }
         fileWriter.close();
     }
+
+    public void createNewList(String name) throws IOException {
+        String path = this.getDataFilePath();
+        path = path + File.separator + name;
+
+        FileWriter fileWriter = new FileWriter(path, false);
+        fileWriter.close();
+    }
 }

@@ -10,18 +10,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 
-@WebServlet("/processEdit.html")
-public class processEditServlet extends HttpServlet {
+@WebServlet("/processNewList.html")
+public class processNewListServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Model model = ModelFactory.getModel();
 
-        String itemHash = request.getParameter("item");
-        String newType = request.getParameter("newType");
-        String newValue = request.getParameter("newValue");
-
-        model.editItem(itemHash, newType, newValue);
+        String newListName = request.getParameter("list");
+        model.createNewList(newListName);
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/editList.html");
