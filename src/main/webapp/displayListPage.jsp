@@ -50,10 +50,11 @@
 
         <table>
             <%ArrayList<Block> blocks = (ArrayList<Block>) request.getAttribute("blocks");%>
+            <%int counter = 1;%>
             <%for (Block block : blocks){%>
                 <tr>
+                    <th>Row <%=counter%></th>
                     <%for (Item item : block.getItems()){%>
-
                         <%if (item.getType().equals("text")){%>
                             <th>
                                 <%=item.getValue()%>
@@ -77,6 +78,7 @@
                             </th>
                         <%}%>
                     <%}%>
+                <%counter++;%>
                 </tr>
             <%}%>
         </table>

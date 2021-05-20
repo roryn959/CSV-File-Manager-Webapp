@@ -10,15 +10,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 
-@WebServlet("/editItem.html")
-public class editItemServlet extends HttpServlet {
+@WebServlet("/processDeleteRow.html")
+public class processDeleteRowServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String chosenFile = request.getParameter("list");
-        request.setAttribute("list", chosenFile);
+        Model model = ModelFactory.getModel();
+
+        String blockHashCode = request.getParameter("block");
+
+        model.deleteBlock(blockHashCode);
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/getEditPage.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/editList.html");
         dispatch.forward(request, response);
     }
 }

@@ -37,9 +37,10 @@
 
     <table>
         <%ArrayList<Block> blocks = (ArrayList<Block>) request.getAttribute("blocks");%>
+        <%int counter = 1;%>
         <%for (Block block : blocks){%>
         <tr>
-
+            <th>Row <%=counter%></th>
             <%for (Item item : block.getItems()){%>
 
             <th>
@@ -88,11 +89,20 @@
                 <form action="/addItem.html" method="post">
                     <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
                     <input type="hidden" name="block" value="<%=block.toString()%>">
-                    <input type="submit" value="+"/>
+                    <input type="submit" value="Add to Row"/>
+                </form>
+            </th>
+
+            <th>
+                <form action="/processDeleteRow.html" method="post">
+                    <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
+                    <input type="hidden" name="block" value="<%=block.toString()%>">
+                    <input type="submit" value="Delete Row">
                 </form>
             </th>
 
         </tr>
+        <%counter++;%>
         <%}%>
 
         <tr>

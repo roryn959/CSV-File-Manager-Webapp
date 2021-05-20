@@ -67,7 +67,11 @@ public class LinkedList {
 
         if (lastBlock == null){
             this.root = this.root.getNext();
-            this.root.setLast(null);
+
+            //If we are deleting the last item in the list, root will be null so setLast does not need to be used.
+            if (this.root != null) {
+                this.root.setLast(null);
+            }
         } else {
             lastBlock.setNext(nextBlock);
         }
@@ -125,5 +129,24 @@ public class LinkedList {
             currentBlock = currentBlock.getNext();
         }
         return false;
+    }
+
+    public void deleteBlock(String blockHashCode){
+        Block currentBlock = this.root;
+
+        for (int i = 0; i<this.size; i++){
+            String currentBlockHashCode = currentBlock.toString();
+            if (currentBlockHashCode.equals(blockHashCode)){
+                this.deleteByIndex(i);
+                return;
+            }
+            currentBlock = currentBlock.getNext();
+        }
+    }
+
+    public static void main(String[] args) {
+        LinkedList m = new LinkedList("hello");
+        m.addBlock(new Block());
+        m.deleteByIndex(0);
     }
 }

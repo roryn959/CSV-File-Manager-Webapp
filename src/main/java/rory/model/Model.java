@@ -150,4 +150,9 @@ public class Model {
         fileWriter.write('\n');
         fileWriter.close();
     }
+
+    public void deleteBlock(String blockHashCode) throws IOException {
+        this.list.deleteBlock(blockHashCode);
+        this.writeFile();
+    }
 }
