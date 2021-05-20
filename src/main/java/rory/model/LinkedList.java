@@ -143,10 +143,4 @@ public class LinkedList {
             currentBlock = currentBlock.getNext();
         }
     }
-
-    public static void main(String[] args) {
-        LinkedList m = new LinkedList("hello");
-        m.addBlock(new Block());
-        m.deleteByIndex(0);
-    }
 }

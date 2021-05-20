@@ -94,6 +94,11 @@
 
     </form>
 
+    <form action="/editList.html" method="post">
+        <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
+        <input type="submit" value="Back">
+    </form>
+
     </body>
 </div>
 

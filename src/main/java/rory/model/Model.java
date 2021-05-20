@@ -48,6 +48,8 @@ public class Model {
         }
 
         this.counter = 0;
+
+        reader.close();
     }
 
     public Block getNext(){
@@ -154,5 +156,30 @@ public class Model {
     public void deleteBlock(String blockHashCode) throws IOException {
         this.list.deleteBlock(blockHashCode);
         this.writeFile();
+    }
+
+    public void deleteList(String listName) throws IOException {
+        String path = this.getDataFilePath();
+        path = path + File.separator + listName;
+
+        System.out.println("Path: " + path);
+
+        File file = new File(path);
+
+        System.out.println(file);
+
+        if (!file.delete()){
+            System.out.println("Failed to delete file.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Model m = new Model();
+
+        try {
+            m.deleteList("deleteMe");
+        } catch (IOException e){
+            System.out.println(e);
+        }
     }
 }

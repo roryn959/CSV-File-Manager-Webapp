@@ -24,7 +24,7 @@
 <head>
     <jsp:include page="header.jsp"/>
     <title>
-        Search
+        Edit List
     </title>
 </head>
 
@@ -114,6 +114,12 @@
             </th>
         </tr>
     </table>
+
+    <br>
+    <form action="/processDeleteList.html" method="get">
+        <input type="hidden" name="list" value="<%=request.getParameter("list")%>">
+        <input type="submit" value="Delete List"/>
+    </form>
 
     </body>
 </div>

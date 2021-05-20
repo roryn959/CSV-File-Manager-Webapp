@@ -23,6 +23,11 @@
             <form action="<%=nextPage%>" method="post">
 
                 <%String[] dataFileNames = (String[]) request.getAttribute("dataFileNames");%>
+
+                <%if (dataFileNames.length==0){%>
+                    <h3>Didn't find any lists!</h3>
+                <%} else {%>
+
                 <label for="list">Detected <%=dataFileNames.length%> lists. Please pick one:</label>
 
                 <select name="list" id="list">
@@ -33,7 +38,7 @@
 
                 <input type="submit" value="Select">
             </form>
-
+            <%}%>
         </body>
     </div>
 

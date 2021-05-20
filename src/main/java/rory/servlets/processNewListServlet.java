@@ -14,7 +14,6 @@ import java.io.*;
 public class processNewListServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Model model = ModelFactory.getModel();
 
         String newListName = request.getParameter("list");
