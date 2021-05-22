@@ -28,6 +28,10 @@
             <form method="post" action="/displayListPicker.html">
                 <input type="submit" value="Display an existing list"/>
             </form>
+
+            <form method="post" action="/processSearch.html">
+                <input type="submit" value="Search for an item in a list"/>
+            </form>
         </body>
     </div>
 </html>

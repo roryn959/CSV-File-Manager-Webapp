@@ -56,26 +56,26 @@
                     <th>Row <%=counter%></th>
                     <%for (Item item : block.getItems()){%>
                         <%if (item.getType().equals("text")){%>
-                            <th>
+                            <td>
                                 <%=item.getValue()%>
-                            </th>
+                            </td>
                         <%} else if (item.getType().equals("link")) {%>
-                            <th>
+                            <td>
                                 <a href=<%=item.getValue()%>>
                                     <%=item.getValue()%>
                                 </a>
-                            </th>
+                            </td>
                         <%} else if (item.getType().equals("image")) {%>
-                            <th>
+                            <td>
                                 <img src=<%=item.getValue()%>>
-                            </th>
+                            </td>
                         <%} else if (item.getType().equals("list")) {%>
-                            <th>
+                            <td>
                                 <form action="/displayList.html" method="post">
                                     <input type="hidden" name="list" value="<%=item.getValue()%>">
                                     <input type="submit" value="<%=item.getValue()%>"/>
                                 </form>
-                            </th>
+                            </td>
                         <%}%>
                     <%}%>
                 <%counter++;%>

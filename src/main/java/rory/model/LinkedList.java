@@ -1,5 +1,7 @@
 package rory.model;
 
+import java.util.ArrayList;
+
 public class LinkedList {
     private Block root;
     private int size;
@@ -142,5 +144,28 @@ public class LinkedList {
             }
             currentBlock = currentBlock.getNext();
         }
+    }
+
+    public ArrayList<Result> search(String type, String text){
+        ArrayList<Result> results = new ArrayList<>();
+
+        Block currentBlock = this.root;
+
+        //Most people count from 1, so we will
+        // start the column number tracking from 1.
+        int counter = 1;
+
+        while (currentBlock != null){
+            ArrayList<Result> blockResults = currentBlock.search(type, text);
+            for (Result r : blockResults){
+                r.setList(this.name);
+                r.setRow(counter);
+                results.add(r);
+            }
+            currentBlock = currentBlock.getNext();
+            counter++;
+        }
+
+        return results;
     }
 }

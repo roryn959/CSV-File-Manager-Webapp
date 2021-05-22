@@ -1,5 +1,6 @@
 package rory.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Block {
@@ -45,8 +46,6 @@ public class Block {
         for (Item item : this.items){
             if (item.getType().equals(filter)){
                 newItems.add(item);
-            } else{
-                System.out.println("Not including " + item.getValue());
             }
         }
 
@@ -78,5 +77,27 @@ public class Block {
             }
         }
         return false;
+    }
+
+    public ArrayList<Result> search(String type, String text){
+        ArrayList<Result> results = new ArrayList<>();
+
+        for (int i=0; i<this.items.size(); i++){
+            Item item = this.items.get(i);
+
+            if (type.equals("none") || item.getType().equals(type)){
+                String itemText = item.getValue();
+
+                //If there are fewer than 3 disorders between texts or
+                // the request text is contained in the item text
+                if (Model.levenshteinDistance(itemText, text) < 3 || itemText.contains(text)){
+                    Result r = new Result(item);
+                    r.setColumn(i+1); //Most people count from 1, so add 1.
+                    results.add(r);
+                }
+            }
+        }
+
+        return results;
     }
 }
