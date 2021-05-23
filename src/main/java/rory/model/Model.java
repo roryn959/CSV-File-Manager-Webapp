@@ -24,6 +24,8 @@ public class Model {
 
     public void loadFile(String filePath) throws IOException {
         //File format is as follows:
+        //Type -> text | image | link | list
+        //Value -> (Any ascii character excluding delimiters ~ and ;)
         //Item -> Type~Value
         //Line -> Item#Line | null
         //Data -> Line\nData | null
@@ -37,7 +39,6 @@ public class Model {
 
         String line;
         Block block;
-        Item item;
 
         while ((line = reader.readLine()) != null) {
             block = new Block();

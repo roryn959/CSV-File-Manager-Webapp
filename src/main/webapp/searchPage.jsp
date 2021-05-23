@@ -1,10 +1,8 @@
 <%@ page import="rory.model.Result" %>
 <%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
   User: Rory
   Date: 22/05/2021
   Time: 15:30
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
