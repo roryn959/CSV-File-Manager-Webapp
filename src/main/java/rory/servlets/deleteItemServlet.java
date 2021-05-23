@@ -16,13 +16,9 @@ import java.io.*;
 public class deleteItemServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Model model = ModelFactory.getModel();
         String item = request.getParameter("item");
-
         model.deleteItem(item);
-
-        request.setAttribute("operation", "delete");
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/editList.html");

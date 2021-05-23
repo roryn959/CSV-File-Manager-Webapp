@@ -16,12 +16,11 @@ import java.util.ArrayList;
 public class displayListServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServletContext context = getServletContext();
-
         Model model = ModelFactory.getModel();
         String chosenFile = request.getParameter("list");
         request.setAttribute("list", chosenFile);
 
+        ServletContext context = getServletContext();
         RequestDispatcher dispatch;
         try {
             model.loadFile(chosenFile);
@@ -32,7 +31,6 @@ public class displayListServlet extends HttpServlet {
         } catch (FileNotFoundException e){
             dispatch = context.getRequestDispatcher("/fileNotFoundPage.jsp");
         }
-
         dispatch.forward(request, response);
     }
 }

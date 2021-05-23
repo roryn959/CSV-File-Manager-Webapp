@@ -15,12 +15,17 @@ public class processNewListServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
-
         String newListName = request.getParameter("list");
-        model.createNewList(newListName);
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/editList.html");
-        dispatch.forward(request, response);
+        //List names cannot contain a space or there will be an error
+        if (!newListName.contains(" ")) {
+            model.createNewList(newListName);
+            RequestDispatcher dispatch = context.getRequestDispatcher("/editList.html");
+            dispatch.forward(request, response);
+        } else {
+            RequestDispatcher dispatch = context.getRequestDispatcher("/newList.html");
+            dispatch.forward(request, response);
+        }
     }
 }

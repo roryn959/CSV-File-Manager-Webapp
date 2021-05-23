@@ -15,9 +15,7 @@ public class processDeleteRowServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
-
         String blockHashCode = request.getParameter("block");
-
         model.deleteBlock(blockHashCode);
 
         ServletContext context = getServletContext();

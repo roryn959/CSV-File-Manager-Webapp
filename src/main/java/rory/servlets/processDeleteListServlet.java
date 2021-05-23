@@ -15,7 +15,6 @@ public class processDeleteListServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
-
         String listName = request.getParameter("list");
         model.deleteList(listName);
 

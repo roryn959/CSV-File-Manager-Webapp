@@ -14,7 +14,6 @@ import java.io.*;
 public class displayListPickerServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.setAttribute("nextPage", "displayList.html");
 
         ServletContext context = getServletContext();

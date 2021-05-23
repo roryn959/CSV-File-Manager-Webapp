@@ -18,12 +18,16 @@ public class Model {
 
     public String[] getDataFileNames() {
         String dataPath = this.getDataFilePath();
-
         File dataDirectory = new File(dataPath);
         return dataDirectory.list();
     }
 
     public void loadFile(String filePath) throws IOException {
+        //File format is as follows:
+        //Item -> Type~Value
+        //Line -> Item#Line | null
+        //Data -> Line\nData | null
+
         this.list = new LinkedList(filePath);
         //Takes file name as parameter. Prepend the path to the data files to the name.
         String dataFilePath = this.getDataFilePath();
@@ -37,7 +41,7 @@ public class Model {
 
         while ((line = reader.readLine()) != null) {
             block = new Block();
-            String[] pairs = line.split("#");
+            String[] pairs = line.split(";");
 
             for (String pair : pairs){
                 if (!pair.isEmpty()) {
@@ -128,7 +132,7 @@ public class Model {
 
         for (Block block : this.getBlocks()) {
             for (Item item : block.getItems()){
-                fileWriter.write(item.getType() + '~' + item.getValue() + '#');
+                fileWriter.write(item.getType() + '~' + item.getValue() + ';');
             }
 
             fileWriter.write('\n');
@@ -139,7 +143,6 @@ public class Model {
     public void createNewList(String name) throws IOException {
         String path = this.getDataFilePath();
         path = path + File.separator + name;
-
         FileWriter fileWriter = new FileWriter(path, false);
         fileWriter.close();
     }
@@ -166,11 +169,11 @@ public class Model {
         File file = new File(path);
 
         if (!file.delete()){
-            System.out.println("Failed to delete file.");
+            System.out.println("Failed to delete list.");
         }
     }
 
-    //Search in a particular list, or in all
+    //Search for items in a particular list, or in all
     public ArrayList<Result> search(String listName, String type, String text) throws IOException {
         //Null list name means search in all files
         if (listName == null){
@@ -191,7 +194,7 @@ public class Model {
         }
     }
 
-    //Search for all lists which have names similar to the query
+    //Search for list names, not items
     public ArrayList<String> searchListNames(String query){
         String[] listNames = this.getDataFileNames();
         ArrayList<String> results = new ArrayList<>();

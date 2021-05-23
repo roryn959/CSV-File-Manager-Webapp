@@ -21,6 +21,7 @@ public class LinkedList {
         return this.name;
     }
 
+    //Gets the final item in the list
     private Block getLast(){
         if (this.root == null){
             return null;
@@ -52,7 +53,9 @@ public class LinkedList {
             index--;
         }
 
-        return currentBlock; //Works by decrementing index until it's 0, meaning indices above 0 should return null
+        //Works by decrementing index until it's 0. If index<0, will return root.
+        // If index>list.size(), will return null or an error.
+        return currentBlock;
     }
 
     public void deleteByIndex(int index){
@@ -133,12 +136,12 @@ public class LinkedList {
         return false;
     }
 
-    public void deleteBlock(String blockHashCode){
+    public void deleteBlock(String hashCode){
         Block currentBlock = this.root;
 
         for (int i = 0; i<this.size; i++){
             String currentBlockHashCode = currentBlock.toString();
-            if (currentBlockHashCode.equals(blockHashCode)){
+            if (currentBlockHashCode.equals(hashCode)){
                 this.deleteByIndex(i);
                 return;
             }

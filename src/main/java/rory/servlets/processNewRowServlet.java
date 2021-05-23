@@ -14,9 +14,7 @@ import java.io.*;
 public class processNewRowServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Model model = ModelFactory.getModel();
-
         model.addRow();
 
         ServletContext context = getServletContext();

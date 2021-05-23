@@ -14,9 +14,7 @@ import java.io.*;
 public class processAddItemServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Model model = ModelFactory.getModel();
-
         String blockHash = request.getParameter("block");
         String newType = request.getParameter("newType");
         String newValue = request.getParameter("newValue");

@@ -1,11 +1,11 @@
 package rory.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Block {
     private ArrayList<Item> items;
 
+    //Pointers for linked list
     private Block last;
     private Block next;
 
@@ -40,6 +40,7 @@ public class Block {
         return this.next;
     }
 
+    //Removes all items which don't match the given type
     public void filterBy(String filter){
         ArrayList<Item> newItems = new ArrayList<>();
 
@@ -52,6 +53,7 @@ public class Block {
         this.items = newItems;
     }
 
+    //Deletes an item by its hashcode
     public boolean deleteItem(String hashCode){
         for (int i=0; i<this.items.size(); i++){
             Item currentItem = this.items.get(i);

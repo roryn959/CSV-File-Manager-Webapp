@@ -1,6 +1,8 @@
 package rory.model;
 
 public class Result {
+    //Result class intended for storing a result of a search,
+    //useful for tracking the exact position of each result.
     private String list;
     private String type;
     private String text;

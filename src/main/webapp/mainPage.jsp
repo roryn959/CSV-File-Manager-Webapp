@@ -17,7 +17,7 @@
     <div style="padding: 15px">
         <body>
 
-            <form method="post" action="/newList.html">
+            <form method="post" action="/newListPage.jsp">
                 <input type="submit" value="Create a new list"/>
             </form>
 

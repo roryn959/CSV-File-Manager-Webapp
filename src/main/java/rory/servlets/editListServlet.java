@@ -19,11 +19,11 @@ public class editListServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
         Model model = ModelFactory.getModel();
-        RequestDispatcher dispatch;
 
         String chosenFile = request.getParameter("list");
         request.setAttribute("list", chosenFile);
 
+        RequestDispatcher dispatch;
         try {
             model.loadFile(chosenFile);
             ArrayList<Block> blocks = model.getBlocks();
